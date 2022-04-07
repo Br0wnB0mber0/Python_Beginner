@@ -1,0 +1,39 @@
+#If the bill was $150.00, split between 5 people, with 12% tip. 
+
+#Each person should pay (150.00 / 5) * 1.12 = 33.6
+
+#Format the result to 2 decimal places = 33.60
+
+#Welcome the user to the tip calculator
+
+print("Welcome to the tip calculator!")
+
+#Get the amount of the total bill and convert it to type float
+
+total_bill = float(input("What was the total bill?\n"))
+
+#Get the tip percentage and convert it to type float
+
+tip = float(input("What percent tip would you like to give? 10, 12, or 15?\n"))
+
+#Get the number of people splitting the bill and convert it to type float
+
+diners = float(input("How many people to split the bill?\n"))
+
+#Calculate the amount to split before the tip
+
+split_amount = total_bill / diners
+
+#Calculate the tip, based on input tip divided by 100, then multiplied by each user's portion
+
+tip_amount = (tip/100) * split_amount
+
+#Calculate the portion of the bill each person should pay. We're just adding the tip to the portion of the bill each diner should pay. Round this to two decimal places
+
+portion_of_bill = round(tip_amount + split_amount, 2)
+
+#Output the results using an f string
+
+print(f"Each person should pay: ${portion_of_bill}")
+
+#The math was spread out here so I could follow each calculation a little easier. My kids are argiung and I'm too scrambled right now to put it all together.
