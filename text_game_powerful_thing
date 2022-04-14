@@ -1,0 +1,59 @@
+print('''
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+''')
+#Welcome the user to the game
+print("Welcome to the Super Fun Quest for the Ultimate Most Powerful Thing!")
+
+#https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload
+
+
+#Get the user to decide which path to take and assign that decision to a variable called decision.
+decision = input("You\'re approaching a crossroad. Do you go left or right?\n")
+#If the user goes right, they get ambushed and can run or fight.
+if decision == "right":
+  fight_decision = input("You are ambushed by thieves. Do you fight or run?\n")
+#If they fight, they are bested by the thieves.
+  if fight_decision == "fight" :
+    print("You are bested in combat, they will sing songs of your bravery\n")
+#If they run, they make it to the castle. There, they can choose to knock on the door of the castle or break in.
+  elif fight_decision == "run":
+    enter_decision = input("You\'ve made it to the castle. Knock on the door or break in?\n")
+#If they knock on the door, they are taken to the Ultimate Most PowerFul Thing and win the game!
+    if enter_decision == "knock":
+      print("You are taken to the Ultimate Most Powerful Thing! Congratulations! You\'ve won!")
+#If they choose to break-in, they are discovered and put in jail. 
+    elif enter_decision == "break in":
+      print("You are discovered immediately and imprisoned. Game Over!")
+#If they choose some invalid option, the game defaults to player losing
+    else:
+        print("Invalid option, Game Over!")
+##If they choose some invalid option, the game defaults to player losing
+  else:
+    print("Invalid option, Game Over!")
+#If the user goes left, they fall off a cliff.
+elif decision == "left":
+  print("The fog is too dense and you fall off a cliff, Game Over!")
+#If the user makes some other choice, they're also toast.
+else:
+  print("Invalid Option, Game Over!")
+
+#Game exits gracefully
