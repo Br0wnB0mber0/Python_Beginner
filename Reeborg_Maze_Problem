@@ -1,0 +1,50 @@
+#This is a set of instructions for the game Reeborg's World, which moves a little robot through a maze
+#The link can be found here:
+#https://reeborg.ca/reeborg.html?lang=en&mode=python&menu=worlds%2Fmenus%2Freeborg_intro_en.json&name=Maze&url=worlds%2Ftutorial_en%2Fmaze1.json
+#Create a function that turns Reeborg right
+def turn_right():
+    turn_left()
+    turn_left()
+    turn_left()
+    
+#Create a function that helps Reeborg jump over the hurdles,
+#for the hurdle challenges
+    
+def jump():
+    turn_left()
+    move()
+    turn_right()
+    move()
+    turn_right()
+    move()
+    turn_left()
+    
+#Create a function that turns Reeborg around,
+#Two lefts turns anyone around
+def turn_around():
+    turn_left()
+    turn_left()
+    move()
+
+#Predefined functions for the course are in the comment below
+#Either the test front_is_clear() or wall_in_front()
+#right_is_clear() or wall_on_right(), and at_goal()
+#Using a while loop, we create a set of instructions for Reeborg
+#to negotiate the maze
+#If the front is clear, move forward
+#If there is a wall in front of Reeborg, have him check for a wall on the
+#right. If there is a wall on the right, turn left
+#If there is no wall on the right, turn right.
+while at_goal() != True:
+    if front_is_clear() == True:
+        move()
+    elif wall_in_front() == True:
+        if wall_on_right() == True:
+            turn_left()
+        else:
+            turn_right()
+    else:
+        turn_left()
+        move()
+        
+        
