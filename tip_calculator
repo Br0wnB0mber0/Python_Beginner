@@ -7,5 +7,7 @@ tip = 1.0 + (float(input("What percentage tip would you like to give? ")))/100
 party = int(input("How many people to split the bill? "))
 #The amount each person should pay is figured here. We multiply total by the tip, then divide the result by the members in the party. To keep the number looking like currency, we round to 2.
 total_each = round((total * tip) / party, 2)
+#We need to pass this to a formatter so we can avoid trailing zero errors, meaning the trailing zeroes don't get printed
+final_amount = "{:.2f}".format(total_each)
 #Now we print the amount so each member knows what they should pay
-print(f"Each person should pay: ${total_each}")
+print(f"Each person should pay: ${final_amount}")
