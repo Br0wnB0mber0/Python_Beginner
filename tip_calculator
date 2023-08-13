@@ -1,0 +1,11 @@
+#Print a friendly welcome message to the tip calculator
+print("Welcome to the tip calculator.")
+#Define variables, we will use total for the total bill, tip for the tip, and party for how many people there are in the party
+total = float(input("What was the total bill? "))
+#Note below that there is some clever math that has to be done with the tip. First we ask the user for input, then we convert that to a float, then we divide that by 100 to get a percentage. Then we add 1 to that percentage, so we can plug the tip amount straight into the formula.
+tip = 1.0 + (float(input("What percentage tip would you like to give? ")))/100
+party = int(input("How many people to split the bill? "))
+#The amount each person should pay is figured here. We multiply total by the tip, then divide the result by the members in the party. To keep the number looking like currency, we round to 2.
+total_each = round((total * tip) / party, 2)
+#Now we print the amount so each member knows what they should pay
+print(f"Each person should pay: ${total_each}")
