@@ -1,0 +1,54 @@
+#Three single quotes on either side of a string lets the machine know this is a multi line string
+print('''
+*******************************************************************************
+          |                   |                  |                     |
+ _________|________________.=""_;=.______________|_____________________|_______
+|                   |  ,-"_,=""     `"=.|                  |
+|___________________|__"=._o`"-._        `"=.______________|___________________
+          |                `"=._o`"=._      _`"=._                     |
+ _________|_____________________:=._o "=._."_.-="'"=.__________________|_______
+|                   |    __.--" , ; `"=._o." ,-"""-._ ".   |
+|___________________|_._"  ,. .` ` `` ,  `"-._"-._   ". '__|___________________
+          |           |o`"=._` , "` `; .". ,  "-._"-._; ;              |
+ _________|___________| ;`-.o`"=._; ." ` '`."\` . "-._ /_______________|_______
+|                   | |o;    `"-.o`"=._``  '` " ,__.--o;   |
+|___________________|_| ;     (#) `-.o `"=.`_.--"_o.-; ;___|___________________
+____/______/______/___|o;._    "      `".o|o_.--"    ;o;____/______/______/____
+/______/______/______/_"=._o--._        ; | ;        ; ;/______/______/______/_
+____/______/______/______/__"=._o--._   ;o|o;     _._;o;____/______/______/____
+/______/______/______/______/____"=._o._; | ;_.--"o.--"_/______/______/______/_
+____/______/______/______/______/_____"=.o|o_.--""___/______/______/______/____
+/______/______/______/______/______/______/______/______/______/______/_____ /
+*******************************************************************************
+''')
+print("Welcome to Treasure Island.")
+print("Your mission is to find the treasure.") 
+
+#https://www.draw.io/?lightbox=1&highlight=0000ff&edit=_blank&layers=1&nav=1&title=Treasure%20Island%20Conditional.drawio#Uhttps%3A%2F%2Fdrive.google.com%2Fuc%3Fid%3D1oDe4ehjWZipYRsVfeAx2HyB7LCQ8_Fvi%26export%3Ddownload
+
+#Write your code below this line 👇
+#Create a variable to store the first decision, which is which direction do they want to go? We use the lower function to set everything lower case, just in case(pardon the pun)
+direction_1 = input("You are leaving the village, which way would you like to go? Type left, right, or back ").lower()
+#Beginning if block, if the direction is left, the game continues, we decide if we will swim or wait, so we create another variable to store that decision.
+if direction_1 == "left":
+  swim_or_wait = input("You come to a shimmering lake! The water looks nice.\nWould you like to swim or wait for a boat? Type swim or wait ").lower()
+  #If the user selects anything but wait, we end the game and let the user know they ran into some snakes
+  if swim_or_wait != "wait":
+    print("Water snakes! RUN!!!\nGAME OVER!")
+    #If the user waits for a boat, then they continue to the  castle and come to a set of doors. We create a new variable so the decision can be stored for use in another if block
+  else:
+    door_choice = input("You come to a castle and see three doors.\nWhich one will you choose? Type red, yellow, or blue ").lower()
+    #If the user chooses red, wall of fire, blue, wall of water, yellow, TREASURE! Anything else, game over
+    if door_choice == "red":
+      print("Oops! Nothing but fire here, no treasure\nGAME OVER")
+    elif door_choice == "blue":
+      print("Room full of water\nGAME OVER")
+    elif door_choice == "yellow":
+      print("You found the treasure!\nYOU WIN!!!")
+    else:
+      print("Invalid choice\nGAME OVER")
+#This is the other branch of the decision tree in the if statements, selecting back lets the user go home, selecting anything else, they fall in a hole and the game ends
+elif direction_1 == "back":
+  print("You return to the village safely, but with no treasure\nGAME OVER")
+else:
+  print("You fell into a hole\nGAME OVER")
