@@ -1,0 +1,16 @@
+row1 = ["⬜️","️⬜️","️⬜️"]
+row2 = ["⬜️","⬜️","️⬜️"]
+row3 = ["⬜️️","⬜️️","⬜️️"]
+map = [row1, row2, row3]
+print(f"{row1}\n{row2}\n{row3}")
+position = input("Where do you want to put the treasure? ")
+
+#The position variable is a string, which can sort of be treated like a string, so we break it in to separate parts and turn those parts into integers so that they can move through the list
+column = int(position[0]) - 1
+row = int(position[1]) - 1
+
+#Now we need to iterate through the map, so we input the row variable first. We do this because this is how the list is arranged/nested. We select the row then we select the item in the row, or the column!
+#Now, it is just a matter of changing the value in that selected spot to what we want, in this case an "X"
+map[row][column] = "X"
+
+print(f"{row1}\n{row2}\n{row3}")
