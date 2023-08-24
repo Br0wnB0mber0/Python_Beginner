@@ -1,0 +1,81 @@
+import random
+rock = '''
+    _______
+---'   ____)
+      (_____)
+      (_____)
+      (____)
+---.__(___)
+'''
+
+paper = '''
+    _______
+---'   ____)____
+          ______)
+          _______)
+         _______)
+---.__________)
+'''
+
+scissors = '''
+    _______
+---'   ____)____
+          ______)
+       __________)
+      (____)
+---.__(___)
+'''
+
+#Welcome the user to the Rock, Paper Scissors game, ask them to make a choice, Rock, Paper, or Scissors
+print("Welcome to the Rock, Paper, Scissors Championship! Please make a selection below")
+
+#Create a variable to store the user choice, make it lower case using the .lower() function
+player_choice  = input("What do you choose? Type rock, paper or scissors:\n").lower()
+
+#Create a list that we can iterate through to create a choice the computer makes
+choices = [rock, paper, scissors]
+
+#Create a random number the length of the list and store that variable
+random_choice = random.randint(0, 2)
+
+#Using the random number we just generated, select what item we are using, based on the random number and our list
+machine_choice = choices[random_choice]
+
+#Print the user choice so they can see the image of what they picked, so they can compare this to the computer\'s choice. If the choice is invalid, exit()
+if player_choice == "rock":
+  print("Player choice:\n" + rock)
+elif player_choice == "paper":
+  print("Player choice:\n" + paper)
+elif player_choice == "scissors":
+  print("Player choice:\n" + scissors)
+else:
+  print("invalid choice, goodbye!")
+  exit()
+#Print the computer\'s choice  
+print("Computer choice:\n" + machine_choice)
+
+#Here is the main logic of the program. We use if statements to compare the choices the user makes and compares them to the computer generated choice. We end the program if the user makes an invalid choice
+if player_choice == "rock":
+  if machine_choice == rock:
+    print("It's a draw")
+  elif machine_choice == paper:
+    print("Paper covers rock, you lose")
+  else:
+    print("Rock smashes scissors, you win!")
+elif player_choice == "paper":
+  if machine_choice == rock:
+    print("Paper covers rock, you win!")
+  elif machine_choice == scissors:
+    print("Scissors cut paper, you lose")
+  else:
+    print("It's a draw")
+elif player_choice == "scissors":
+  if machine_choice == scissors:
+    print("It's a draw")
+  elif machine_choice == rock:
+    print("Rock smashes scissors, you lose")
+  else:
+    print("Scissors cut paper, you win!")
+else:
+  print("Not a valid option, goodbye!")
+  exit()
