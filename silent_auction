@@ -1,0 +1,33 @@
+from replit import clear
+#HINT: You can call clear() to clear the output in the console.
+import art
+
+#Create the bidders dictionary, this is where the names of the bidders and their bids will be stored
+bidders = {}
+
+#Print a welcome message to the user, display the auction logo
+print(art.logo)
+print("Welcome to the Silent Auction!\n")
+#Create a variable that keeps track of if there are more bids to be placed
+more_bidders = True
+#Create a variable to keep track of the highest bid, set it to zero to start
+highest_bid = 0
+#Create a variable to keep track of the winner of the auction, an empty string that will serve as a key later
+highest_bidder = ""
+#Create a while loop. This loop will ask for a name, and a bid, clear the screen, then will ask if there are any more bidders left
+#This loop will also compare the bids to the variable highest_bid and replace the value there as able.
+while more_bidders:
+  name = input("Please enter your name: ") #
+  bid = int(input("Please enter your highest bid: "))
+  bidders[name] = bid
+  if bid > highest_bid:
+    highest_bid = bid
+    highest_bidder = name
+  clear()
+  keep_going = input("Are there any more bidders? Type y or n ").lower()
+  if keep_going == 'n':
+    more_bidders = False
+#Print the output on the screen so users know who won!
+print(f"Highest bidder: {highest_bidder}")
+print(f"Highest bid: {highest_bid}")
+# print(bidders)
