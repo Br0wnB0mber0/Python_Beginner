@@ -1,0 +1,67 @@
+#Calculator App
+#Define addition function
+from art import logo
+def add(n1, n2):
+  return n1 + n2
+
+#Define subtraction function
+def subtract(n1, n2):
+  return n1 - n2
+
+#Define Multiplication function
+def multiply(n1, n2):
+  return n1 * n2
+
+#Define Divide function
+def divide(n1, n2):
+  if n2 == 0:
+    return "Cannot divide by zero"
+  else:
+    return n1 / n2
+#Create a dictionary, using the opeations symbols as keys, and the functions they're associated with as the values
+operations = {
+  "+": add,
+  "-": subtract,
+  "*": multiply,
+  "/": divide
+}
+#define the calculator function
+def calculator():
+  print(logo)
+  #This code for testing
+  # print(add(5, 10))
+  # print(subtract(5, 2))
+  # print(multiply(5, 10))
+  # print(divide(9, 5))
+  # print(divide(9, 0))
+  #Ask the user to input the first number
+  num1 = float(input("What is the first number?: "))
+  keep_going = True
+  while keep_going:
+    
+  #Display a list of symbols for operation
+    for symbol in operations:
+      print(symbol)
+  #Ask the user to select which operation they would like to perform on the numbers
+    operation_symbol = input("Pick an operation from the line above: ")
+  #Ask the user to input a second number for calculation
+    num2 = float(input("What is the next number?: "))
+  #Create a variable called calculation_fuction that calls the functions inside the dictionary using operation_symbol as the key, this variable now behaves like a function of its own
+    calculation_function = operations[operation_symbol]
+  #Create a variable called answer and pass the numbers to it
+    answer = calculation_function(num1, num2)
+  #Print the result using an f string
+    print(f"{num1} {operation_symbol} {num2} = {answer}")
+    if answer == "Cannot divide by zero":
+      decision = "n"
+      calculator()
+    else:
+      decision = input(f"Would you like to perform another calculation with {answer}? Type y, or type n to start a new calculation: ")
+    if decision == "y":
+      keep_going = True
+      num1 = answer
+    else:
+      keep_going = False
+      calculator()
+
+calculator()
