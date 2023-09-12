@@ -1,0 +1,126 @@
+#Imports the logo from the art file
+from art import logo
+#Import random to "deal" the cards
+import random
+#Imports the clear function from Replit. This will need to be replaced depending on where you're running the app
+from replit import clear
+#Create a variable called new_game, set it to True. This will start the game each time a choice is entered at the end of the game
+new_game = True
+#This is our while loop, that starts the game each time. The game is inside this loop
+while new_game:
+  #Clear the screen each time, this is done for ease of reading
+  clear()
+  #Print the Blackjack logo, imported from the art file. If you don't include the art file, you'll need to comment this out.
+  print(logo)
+  #Create a deck of cards
+  cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+  #Create two variables that will store the player's and dealers hands for each game, set this to be an empty list
+  player_hand = []
+  dealer_hand = []
+  def deal():
+    """This function creates a random integer and uses that to iterate through a list of cards, selecting two for each player.
+  """
+    dealing = True
+    
+    cards_on_table = {
+      "Player's hand": player_hand,
+      "Dealer's hand": dealer_hand
+    }
+    while dealing:
+      random_card = random.randint(0,12)
+      card = cards[random_card]
+      player_hand.append(card)
+      
+      random_card = random.randint(0,12)
+      card = cards[random_card]
+      dealer_hand.append(card)
+      
+      if len(dealer_hand) == 2:
+        dealing = False
+    return cards_on_table
+  #Create  function called hit_me that returns an extra card to the player and dealer
+  def hit_me():
+    """This function will deal out an additional card to the player or the dealer when called"""
+    random_card = random.randint(0,12)
+    new_card = cards[random_card]
+    return new_card
+  #Store the deal() function in a new variable called cards_on_table so we can do some work with it, and make the coach a tinch more readable
+  cards_on_table = deal()
+  #Create a function called scoring() that tabulates initial scores and returns them as a dictionary
+  def scoring():
+    """This function iterates through the initial cards given to each player and calculates their initial score"""
+    player_total = 0
+    dealer_total = 0
+    
+    for card in cards_on_table["Player's hand"]:
+      player_total += card
+    for card in cards_on_table["Dealer's hand"]:
+      dealer_total += card
+  
+    totals = {
+      "Player's total": player_total,
+      "Dealer's total": dealer_total
+    }
+    return totals
+  #Put the scoring() function in a new variable called score, again, to do some work with the function and make the code more readable
+  score = scoring()
+  player_score = score["Player's total"]
+  dealer_score = score["Dealer's total"]
+  #Create a variable called end_game. If the user decides to hit, it continues, if the user stands, the game ends
+  end_game = False
+  while not end_game:
+    #Print each card in the player's hand and only the top card in the dealer's hand
+    for hand in cards_on_table:
+      if hand == "Player's hand":
+        print(f"{hand}: {cards_on_table[hand]}\n")
+    dealers_secret = cards_on_table["Dealer's hand"][0]
+    print(f"Dealer's hand: {dealers_secret}")
+    #Ask the user if they would like to hit or stand, they just type hit or stand
+    hit_or_stand = input("Would you like to hit or stand? ").lower()
+    
+    #A rule for the dealer, if their score is over 21 and they have an 11 in thier hand, it now equals 1 
+    if dealer_score > 21 and 11 in cards_on_table["Dealer's hand"]:
+      ace = cards_on_table["Dealer's hand"].index(11)
+      cards_on_table["Dealer's hand"][ace] = 1
+      dealer_score -= 10
+    #Another rule for the dealer, if their score is less than 12, they should always take another card.
+    if dealer_score < 12:
+      hit_card = hit_me()
+      cards_on_table["Dealer's hand"].append(hit_card)
+      dealer_score += hit_card
+    #Here's our logic where we end or continue the game
+    if hit_or_stand == "stand":
+      end_game = True
+    elif hit_or_stand == "hit":
+      hit_card = hit_me()
+      cards_on_table["Player's hand"].append(hit_card)
+      print(f"New card: {hit_card}")
+      player_score += hit_card
+  #If the user decides to end the game, we do it Vegas style and show the cards  
+  for hand in cards_on_table:
+    print(f"{hand}: {cards_on_table[hand]}\n")
+    #If the user has an ace in their hand, and they've busted, count the ace as 1
+  if player_score > 21 and 11 in cards_on_table["Player's hand"]:
+    ace = cards_on_table["Player's hand"].index(11)
+    cards_on_table["Player's hand"][ace] = 1
+    player_score -= 10
+  if player_score > dealer_score and player_score <= 21:
+    print(f"Player score: {player_score}\nDealer score: {dealer_score}\nYou Win!")
+  elif player_score == dealer_score:
+    print(f"Player score: {player_score}\nDealer score: {dealer_score}\nDraw!")
+  else:
+    print(f"Player score: {player_score}\nDealer score: {dealer_score}\nYou Lose")
+    #Ask the user if they would like to play again, if yes, restart the outer loop!
+  play_again = input("Would you like to play another game? Type y or n: ")
+  if play_again == "n":
+    new_game = False
+
+    
+  
+    # Used these for testing output
+    # print(f"Player score: {player_score}")
+    # print(f"Dealer score: {dealer_score}")
+    # print(cards_on_table)
+    # print(hit_me())
+    # print(scoring())
+    
