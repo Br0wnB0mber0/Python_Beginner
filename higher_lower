@@ -1,0 +1,58 @@
+#Import the art module for this game
+import art
+#Import the game data you'll need to compare
+from game_data import data
+#Import the OS so we can call clear when needed, replace clear with cls when using Windows
+import os
+#Create a random number to iterate through the list to pull names from.
+import random
+list_length = (len(data))
+#Create a variable that holds the score for the game
+score = 0
+# Create a function called random_name that grabs a random list entry when called
+def random_name(data_length, master_list):
+  length = data_length-1
+  selector = random.randint(0, length)
+  return data[selector]
+#Create an empty list to hold the list items from the master list
+compare_list = []
+#Call the random_name function twice and add the names to the newly created empty list compare_list
+for i in range(0,2):
+    guest = random_name(data_length = list_length, master_list = data)
+    compare_list.append(guest)
+#Create a variable called end_of_game and set to false, this will start our loop
+end_of_game = False
+#Create a variable called score that holds the user score
+score = 0
+#Create a guest win counter that holds how many times the list entry has been used, we will use this in an if statement to grab another list item if needed
+guest_win_counter = 0
+#Begin the while loop: This will compare two names from the list and ask the user to guess which is higher, if they are right, we will move on, if not, the game ends and their score is printed
+while not end_of_game:
+    choice_a = compare_list[0]
+    choice_b = compare_list[1]
+    print(art.logo)
+    print(f"Compare A: {choice_a['name']}, a {choice_a['description']} from {choice_a['country']}")
+    print(art.vs)
+    print(f"Against B: {choice_b['name']}, a {choice_b['description']} from {choice_b['country']}")
+    choice = input("Who do you think has more followers? Type 'A' or 'B': ").lower()
+    if choice_a['follower_count'] >= choice_b['follower_count'] and choice == 'a':
+        score += 1
+        guest_win_counter += 1
+        print(f"You're right! Current score {score}")
+        compare_list[1] = random_name(data_length = list_length, master_list = data)
+        os.system('clear')
+        if guest_win_counter > 1:
+            compare_list[0] = random_name(data_length = list_length, master_list = data)
+            guest_win_counter = 0
+    elif choice_a['follower_count'] <= choice_b['follower_count'] and choice == 'b':
+        score += 1
+        guest_win_counter += 1
+        print(f"You're right! Current score {score}")
+        compare_list[0] = random_name(data_length = list_length, master_list = data)
+        os.system('clear')
+        if guest_win_counter > 1:
+            compare_list[1] = random_name(data_length = list_length, master_list = data)
+            guest_win_counter = 0
+    else:
+        print(f"Sorry, that's wrong! Final score: {score}")
+        end_of_game = True
